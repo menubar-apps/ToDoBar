@@ -1,4 +1,4 @@
-# ToDoBar - in progress
+# ToDoBar
 
 <p align="center">
   <a href="https://github.com/menubar-apps/ToDoBar"><img src="https://img.shields.io/badge/-ToDoBar-black?logo=github&style=flat"></a>
