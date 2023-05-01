@@ -31,9 +31,10 @@ struct ContentView: View {
                             .padding(.top, 1)
                     }.buttonStyle(PlainButtonStyle())
                     
-                    todos[index].isDone
-                    ? Text(todos[index].text).foregroundColor(.secondary).strikethrough()
-                    : Text(todos[index].text)
+                    Text(todos[index].text)
+                        .foregroundColor(todos[index].isDone ? .secondary : .primary)
+                        .strikethrough(todos[index].isDone)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     
                     Spacer()
                     Button(action: {
@@ -45,7 +46,10 @@ struct ContentView: View {
                             .padding(.top, 1)
                     }.buttonStyle(PlainButtonStyle())
                 }
-            }.listStyle(.sidebar)
+
+
+            }
+//            .listStyle(.sidebar)
                         
             HStack {
                 
@@ -53,7 +57,6 @@ struct ContentView: View {
                     .padding(.vertical, 8)
                     .padding(.horizontal, 8)
                     .padding(.leading, 22)
-                    .background(Color("textFieldBackgroundTransparent"))
                     .cornerRadius(8)
                     .textFieldStyle(PlainTextFieldStyle())
                     .overlay(
@@ -82,8 +85,7 @@ struct ContentView: View {
                     Button(action: { appDelegate.quit()}) {
                         Label("Quit", systemImage: "books.vertical")
                     }
-                } label: {
-                }
+                } label: {}
                 .menuStyle(BorderlessButtonMenuStyle())
                 .frame(width: 14, height: 16)
                 .padding(8)
@@ -92,17 +94,5 @@ struct ContentView: View {
                 .cornerRadius(8)
             }
         }.padding(8)
-    }
-}
-
-struct CustomText: View {
-    let text: String
-    
-    var body: some View {
-        Text(text)
-    }
-    
-    init(_ text: String) {
-        self.text = text
     }
 }
