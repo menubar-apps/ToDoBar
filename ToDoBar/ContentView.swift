@@ -9,13 +9,19 @@ import SwiftUI
 
 import SwiftUI
 import Defaults
+import LaunchAtLogin
 
 struct ContentView: View {
     
     @Default(.todos) var todos
-    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-    @State private var asd: String = ""
+    @NSApplicationDelegateAdaptor private var appDelegate: AppDelegate
+    
+    @State private var text: String = ""
+    @FocusState private var isTextFieldFocused: Bool
+
+    @State private var newTodo: String = ""
+    @ObservedObject private var launchAtLogin = LaunchAtLogin.observable
 
     var body: some View {
         VStack {
@@ -44,30 +50,35 @@ struct ContentView: View {
                             .resizable()
                             .frame(width: 18, height: 18)
                             .padding(.top, 1)
+                            .foregroundColor(.secondary)
                     }.buttonStyle(PlainButtonStyle())
                 }
-
-
             }
-//            .listStyle(.sidebar)
-                        
+
             HStack {
                 
-                TextField("Type a task and hit enter", text: $asd)
+                TextField("Type a task and hit enter", text: $newTodo)
                     .padding(.vertical, 8)
                     .padding(.horizontal, 8)
                     .padding(.leading, 22)
                     .cornerRadius(8)
                     .textFieldStyle(PlainTextFieldStyle())
+                    .focused($isTextFieldFocused)
+                    .focusable(true) { isFocused in
+                        self.isTextFieldFocused = isFocused
+                    }
                     .overlay(
                         Image(systemName: "plus.circle.fill")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .foregroundColor(.gray)
                             .padding(.leading, 8)
                     ).onSubmit {
-                        self.todos.append(Todo(text: asd))
-                        asd = ""
+                        self.todos.append(Todo(text: newTodo))
+                        newTodo = ""
                     }
+                    .onAppear {
+                                isTextFieldFocused = true
+                            }
 
                 Spacer()
                 Menu {
@@ -82,6 +93,11 @@ struct ContentView: View {
                         Label("Clear All", systemImage: "book")
                     }
                     Divider()
+                    Toggle("Launch at login", isOn: $launchAtLogin.isEnabled)
+                    Divider()
+                    Button(action: { appDelegate.openAboutWindow(nil) } ) {
+                        Label("About ToDoBar", systemImage: "books.vertical")
+                    }
                     Button(action: { appDelegate.quit()}) {
                         Label("Quit", systemImage: "books.vertical")
                     }
