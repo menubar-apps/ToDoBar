@@ -15,7 +15,6 @@
 		76B1F8ED28B70EA10027F7C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B1F8EC28B70EA10027F7C8 /* ContentView.swift */; };
 		76B1F8F028B70EDC0027F7C8 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 76B1F8EF28B70EDC0027F7C8 /* Defaults */; };
 		76B1F8F328B70EE90027F7C8 /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 76B1F8F228B70EE90027F7C8 /* HotKey */; };
-		76BD41E02A585DEB00859EA7 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 76BD41DF2A585DEB00859EA7 /* LaunchAtLogin */; };
 		76BD41E32A58602400859EA7 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BD41E22A58602400859EA7 /* AboutView.swift */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +35,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				76BD41E02A585DEB00859EA7 /* LaunchAtLogin in Frameworks */,
 				76B1F8F328B70EE90027F7C8 /* HotKey in Frameworks */,
 				76B1F8F028B70EDC0027F7C8 /* Defaults in Frameworks */,
 			);
@@ -86,7 +84,6 @@
 				76B1F8D228B70DE80027F7C8 /* Sources */,
 				76B1F8D328B70DE80027F7C8 /* Frameworks */,
 				76B1F8D428B70DE80027F7C8 /* Resources */,
-				76BD41E12A585DF500859EA7 /* Copy "Launch at Login Helper" */,
 			);
 			buildRules = (
 			);
@@ -96,7 +93,6 @@
 			packageProductDependencies = (
 				76B1F8EF28B70EDC0027F7C8 /* Defaults */,
 				76B1F8F228B70EE90027F7C8 /* HotKey */,
-				76BD41DF2A585DEB00859EA7 /* LaunchAtLogin */,
 			);
 			productName = ToDoBar;
 			productReference = 76B1F8D628B70DE80027F7C8 /* ToDoBar.app */;
@@ -110,7 +106,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1310;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					76B1F8D528B70DE80027F7C8 = {
 						CreatedOnToolsVersion = 13.1;
@@ -129,7 +125,6 @@
 			packageReferences = (
 				76B1F8EE28B70EDC0027F7C8 /* XCRemoteSwiftPackageReference "Defaults" */,
 				76B1F8F128B70EE90027F7C8 /* XCRemoteSwiftPackageReference "HotKey" */,
-				76BD41DE2A585DEB00859EA7 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
 			);
 			productRefGroup = 76B1F8D728B70DE80027F7C8 /* Products */;
 			projectDirPath = "";
@@ -151,28 +146,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		76BD41E12A585DF500859EA7 /* Copy "Launch at Login Helper" */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Copy \"Launch at Login Helper\"";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILT_PRODUCTS_DIR}/LaunchAtLogin_LaunchAtLogin.bundle/Contents/Resources/copy-helper-swiftpm.sh\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		76B1F8D228B70DE80027F7C8 /* Sources */ = {
@@ -239,6 +212,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -302,6 +276,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -418,14 +393,6 @@
 				kind = branch;
 			};
 		};
-		76BD41DE2A585DEB00859EA7 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -438,11 +405,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 76B1F8F128B70EE90027F7C8 /* XCRemoteSwiftPackageReference "HotKey" */;
 			productName = HotKey;
-		};
-		76BD41DF2A585DEB00859EA7 /* LaunchAtLogin */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 76BD41DE2A585DEB00859EA7 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
-			productName = LaunchAtLogin;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
