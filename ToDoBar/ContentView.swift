@@ -25,8 +25,11 @@ struct ContentView: View {
     //    @ObservedObject private var launchAtLogin = LaunchAtLogin.observable
     
     @State private var editedItemIdx: Int = -1
+    @State private var hoverItemIdx: Int = -1
+    @State private var hoverIdx: Int = -1
+    
     @FocusState private var focusedField: Bool
-
+    
     var body: some View {
         VStack {
             List($todos.indices, id: \.self) { index in
@@ -42,34 +45,47 @@ struct ContentView: View {
                     }.buttonStyle(PlainButtonStyle())
                     
                     if editedItemIdx == index {
-                        TextField("", text: $editedItem)
+                        TextField("", text: $editedItem, axis: .vertical)
                             .focused($focusedField)
+                            .onSubmit {
+                                editedItemIdx = -1
+                                todos[index] = Todo(text: editedItem, isDone: todos[index].isDone)
+                                focusedField = false
+                            }
+                            .onExitCommand(perform: {
+                                editedItemIdx = -1
+                                todos[index] = Todo(text: editedItem, isDone: todos[index].isDone)
+                                focusedField = false
+                            })
                     } else {
                         Text(todos[index].text)
                             .foregroundColor(todos[index].isDone ? .secondary : .primary)
                             .strikethrough(todos[index].isDone)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                        //                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .onTapGesture {
+                                editedItemIdx = index
+                                editedItem = todos[index].text
+                                focusedField = true
+                            }
+                            .onHover { isHovered in
+                                if isHovered {
+                                    self.hoverIdx = index
+                                } else {
+                                    self.hoverIdx = -1
+                                }
+                                DispatchQueue.main.async {
+                                    if (self.hoverIdx == index) {
+                                        NSCursor.pointingHand.push()
+                                    } else {
+                                        NSCursor.pop()
+                                    }
+                                }
+                            }
                     }
                     
                     Spacer()
                     
-                    Button(action: {
-                        if editedItemIdx == index {
-                            editedItemIdx = -1
-                            todos[index] = Todo(text: editedItem, isDone: todos[index].isDone)
-                            focusedField = false
-                        } else {
-                            editedItemIdx = index
-                            editedItem = todos[index].text
-                            focusedField = true
-                        }
-                    }) {
-                        Image(systemName: editedItemIdx == index ? "square.and.arrow.down" : "pencil.circle")
-                            .resizable()
-                            .frame(width: 18, height: 18)
-                            .padding(.top, 1)
-                            .foregroundColor(.secondary)
-                    }.buttonStyle(PlainButtonStyle())
+                    //                    if hoverItemIdx == index {
                     Button(action: {
                         todos.remove(at: index)
                     }) {
@@ -77,10 +93,23 @@ struct ContentView: View {
                             .resizable()
                             .frame(width: 18, height: 18)
                             .padding(.top, 1)
-                            .foregroundColor(.secondary)
-                    }.buttonStyle(PlainButtonStyle())
+                            .foregroundColor(hoverItemIdx == index ? .primary : .secondary)
+                            .opacity(hoverItemIdx == index ? 1 : 0.2)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .onHover { isHovered in
+                        if isHovered {
+                            withAnimation {
+                                self.hoverItemIdx = index
+                            }
+                        } else {
+                            self.hoverItemIdx = -1
+                        }
+                    }
+                    .listRowSeparator(.hidden)
                 }
             }
+            
             
             HStack {
                 
