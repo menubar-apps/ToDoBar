@@ -14,15 +14,21 @@ import LaunchAtLogin
 struct ContentView: View {
     
     @Default(.todos) var todos
-
+    
     @NSApplicationDelegateAdaptor private var appDelegate: AppDelegate
     
     @State private var text: String = ""
-    @FocusState private var isTextFieldFocused: Bool
-
+    @State private var editedItem: String = ""
+    
     @State private var newTodo: String = ""
-    @ObservedObject private var launchAtLogin = LaunchAtLogin.observable
-
+    
+    @State private var editedItemIdx: Int = -1
+    @State private var hoverItemIdx: Int = -1
+    @State private var hoverIdx: Int = -1
+    
+    @FocusState private var isTextFieldFocused: Bool
+    @FocusState private var IsTodoItemFocused: Bool
+    
     var body: some View {
         VStack {
             List($todos.indices, id: \.self) { index in
@@ -37,12 +43,60 @@ struct ContentView: View {
                             .padding(.top, 1)
                     }.buttonStyle(PlainButtonStyle())
                     
-                    Text(todos[index].text)
-                        .foregroundColor(todos[index].isDone ? .secondary : .primary)
-                        .strikethrough(todos[index].isDone)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    if editedItemIdx == index {
+                        TextField("", text: $editedItem, axis: .vertical)
+                            .focused($IsTodoItemFocused)
+                        // press enter
+                            .onSubmit {
+                                editedItemIdx = -1
+                                todos[index] = Todo(text: editedItem, isDone: todos[index].isDone)
+                                IsTodoItemFocused = false
+                            }
+                        // press esc
+                            .onExitCommand(perform: {
+                                editedItemIdx = -1
+                                todos[index] = Todo(text: editedItem, isDone: todos[index].isDone)
+                                IsTodoItemFocused = false
+                            })
+                        // click outside of textfield
+                            .onChange(of: IsTodoItemFocused) { isFocused in
+                                if !IsTodoItemFocused {
+                                    editedItemIdx = -1
+                                    todos[index] = Todo(text: editedItem, isDone: todos[index].isDone)
+                                }
+                            }
+                            .padding(2)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color(nsColor: NSColor.controlColor), lineWidth: 1)
+                            )
+                    } else {
+                        Text(todos[index].text)
+                            .foregroundColor(todos[index].isDone ? .secondary : .primary)
+                            .strikethrough(todos[index].isDone)
+                            .onTapGesture {
+                                editedItemIdx = index
+                                editedItem = todos[index].text
+                                IsTodoItemFocused = true
+                            }
+                            .onHover { isHovered in
+                                if isHovered {
+                                    self.hoverIdx = index
+                                } else {
+                                    self.hoverIdx = -1
+                                }
+                                DispatchQueue.main.async {
+                                    if (self.hoverIdx == index) {
+                                        NSCursor.iBeam.push()
+                                    } else {
+                                        NSCursor.pop()
+                                    }
+                                }
+                            }
+                    }
                     
                     Spacer()
+                    
                     Button(action: {
                         todos.remove(at: index)
                     }) {
@@ -50,11 +104,24 @@ struct ContentView: View {
                             .resizable()
                             .frame(width: 18, height: 18)
                             .padding(.top, 1)
-                            .foregroundColor(.secondary)
-                    }.buttonStyle(PlainButtonStyle())
+                            .foregroundColor(hoverItemIdx == index ? .primary : .secondary)
+                            .opacity(hoverItemIdx == index ? 1 : 0.2)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    .onHover { isHovered in
+                        if isHovered {
+                            withAnimation {
+                                self.hoverItemIdx = index
+                            }
+                        } else {
+                            self.hoverItemIdx = -1
+                        }
+                    }
+                    .listRowSeparator(.hidden)
                 }
+                .listRowSeparator(.hidden)
             }
-
+            
             HStack {
                 
                 TextField("Type a task and hit enter", text: $newTodo)
@@ -77,9 +144,9 @@ struct ContentView: View {
                         newTodo = ""
                     }
                     .onAppear {
-                                isTextFieldFocused = true
-                            }
-
+                        isTextFieldFocused = true
+                    }
+                
                 Spacer()
                 Menu {
                     Button(action: {
@@ -93,7 +160,7 @@ struct ContentView: View {
                         Label("Clear All", systemImage: "book")
                     }
                     Divider()
-                    Toggle("Launch at login", isOn: $launchAtLogin.isEnabled)
+                    LaunchAtLogin.Toggle()
                     Divider()
                     Button(action: { appDelegate.openAboutWindow(nil) } ) {
                         Label("About ToDoBar", systemImage: "books.vertical")
@@ -101,13 +168,21 @@ struct ContentView: View {
                     Button(action: { appDelegate.quit()}) {
                         Label("Quit", systemImage: "books.vertical")
                     }
-                } label: {}
+                } label: {
+                    Image(systemName: "chevron.down")
+                }
+                .labelsHidden()
+                .scaledToFit()
                 .menuStyle(BorderlessButtonMenuStyle())
-                .frame(width: 14, height: 16)
-                .padding(8)
-                .padding(.trailing, 2)
+                .menuIndicator(.hidden)
+                .frame(width: 16, height: 16)
+                .padding(.vertical, 8)
+                .padding(.leading, 10)
+                .padding(.trailing, 6)
                 .background(Color.accentColor)
                 .cornerRadius(8)
+                .contentShape(Rectangle())
+                
             }
         }.padding(8)
     }
