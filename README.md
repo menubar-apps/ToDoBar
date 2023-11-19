@@ -20,7 +20,7 @@ Super simple and straightforward todo list app. Just create an item, mark it don
 
  - create new, mark done and delete a todo item
  - no cloud sync across devices
- - no search, no tags, no editing, no export, no reordering
+ - no search, no tags, no export, no reordering
  - not even a preference window!
 
 # Installation
