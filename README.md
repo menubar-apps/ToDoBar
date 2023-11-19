@@ -4,6 +4,7 @@
   <a href="https://github.com/menubar-apps/ToDoBar"><img src="https://img.shields.io/badge/-ToDoBar-black?logo=github&style=flat"></a>
   <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/menubar-apps/ToDoBar/total">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/menubar-apps/ToDoBar">
+  <img alt="GitHub release (with filter)" src="https://img.shields.io/github/v/release/menubar-apps/ToDoBar">
 </p>
   
 <p align="center">
