@@ -10,7 +10,7 @@ import SwiftUI
 struct AboutView: View {
     let currentVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
     @Environment(\.openURL) var openURL
-
+    
     var body: some View {
 
         VStack {
@@ -27,7 +27,15 @@ struct AboutView: View {
                     Text("Home Page")
                 }
                 .frame(maxWidth: 160)
+                
             }
+            .buttonStyle(.borderless)
+            .padding(4)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.accentColor, lineWidth: 1)
+            )
+            
             Button(action: {
                 openURL(URL(string:"https://github.com/menubar-apps/ToDoBar/issues/new?template=feature_request.md")!)
             }) {
@@ -37,6 +45,13 @@ struct AboutView: View {
                 }
                 .frame(maxWidth: 160)
             }
+            .buttonStyle(.borderless)
+            .padding(4)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.accentColor, lineWidth: 1)
+            )
+            
             Button(action: {
                 openURL(URL(string:"https://github.com/menubar-apps/ToDoBar/issues/new?template=bug_report.md")!)
             }) {
@@ -46,12 +61,30 @@ struct AboutView: View {
                 }
                 .frame(maxWidth: 160)
             }
+            .buttonStyle(.borderless)
+            .padding(4)
+            .overlay(
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.accentColor, lineWidth: 1)
+            )
+            
+            Divider()
+            AppPromotionView()
         }.padding()
+        
+        
     }
 }
 
-struct AboutView_Previews: PreviewProvider {
-    static var previews: some View {
-        AboutView()
-    }
+struct App: Identifiable {
+    let id = UUID()
+    let name: String
+    let description: String
+    let iconName: String
+    let appStoreURL: String
+}
+
+#Preview {
+    AboutView()
+        .frame(height: 500)
 }

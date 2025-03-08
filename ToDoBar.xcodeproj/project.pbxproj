@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76181DC02D6D370D00D4D7CB /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76181DBF2D6D370D00D4D7CB /* TodoList.swift */; };
+		76181DC32D6D374400D4D7CB /* TodoItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76181DC22D6D374400D4D7CB /* TodoItemButton.swift */; };
+		76181DC52D6D375900D4D7CB /* EditableTodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76181DC42D6D375900D4D7CB /* EditableTodoItem.swift */; };
+		76181DC72D6D377300D4D7CB /* TodoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76181DC62D6D377300D4D7CB /* TodoItemView.swift */; };
+		76181DC92D6D378D00D4D7CB /* DeleteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76181DC82D6D378D00D4D7CB /* DeleteButton.swift */; };
+		76181DCB2D6D37A100D4D7CB /* NewTodoField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76181DCA2D6D37A100D4D7CB /* NewTodoField.swift */; };
+		76181DCD2D6D37B300D4D7CB /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76181DCC2D6D37B300D4D7CB /* MenuView.swift */; };
+		76181DCF2D6D3AED00D4D7CB /* ReorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76181DCE2D6D3AED00D4D7CB /* ReorderButton.swift */; };
+		76181DD12D6D443200D4D7CB /* AppPromotionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76181DD02D6D443200D4D7CB /* AppPromotionView.swift */; };
+		76181DD32D6D447100D4D7CB /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76181DD22D6D447100D4D7CB /* AppView.swift */; };
 		76B1F8DA28B70DE80027F7C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B1F8D928B70DE80027F7C8 /* AppDelegate.swift */; };
 		76B1F8DE28B70DE90027F7C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76B1F8DD28B70DE90027F7C8 /* Assets.xcassets */; };
 		76B1F8E128B70DE90027F7C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76B1F8DF28B70DE90027F7C8 /* Main.storyboard */; };
@@ -20,6 +30,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		76181DBF2D6D370D00D4D7CB /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
+		76181DC22D6D374400D4D7CB /* TodoItemButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemButton.swift; sourceTree = "<group>"; };
+		76181DC42D6D375900D4D7CB /* EditableTodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTodoItem.swift; sourceTree = "<group>"; };
+		76181DC62D6D377300D4D7CB /* TodoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItemView.swift; sourceTree = "<group>"; };
+		76181DC82D6D378D00D4D7CB /* DeleteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteButton.swift; sourceTree = "<group>"; };
+		76181DCA2D6D37A100D4D7CB /* NewTodoField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodoField.swift; sourceTree = "<group>"; };
+		76181DCC2D6D37B300D4D7CB /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		76181DCE2D6D3AED00D4D7CB /* ReorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReorderButton.swift; sourceTree = "<group>"; };
+		76181DD02D6D443200D4D7CB /* AppPromotionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppPromotionView.swift; sourceTree = "<group>"; };
+		76181DD22D6D447100D4D7CB /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		76B1F8D628B70DE80027F7C8 /* ToDoBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76B1F8D928B70DE80027F7C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		76B1F8DD28B70DE90027F7C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -45,6 +65,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		76181DC12D6D371300D4D7CB /* view */ = {
+			isa = PBXGroup;
+			children = (
+				76B1F8EC28B70EA10027F7C8 /* ContentView.swift */,
+				76BD41E22A58602400859EA7 /* AboutView.swift */,
+				76181DBF2D6D370D00D4D7CB /* TodoList.swift */,
+				76181DC22D6D374400D4D7CB /* TodoItemButton.swift */,
+				76181DC42D6D375900D4D7CB /* EditableTodoItem.swift */,
+				76181DC62D6D377300D4D7CB /* TodoItemView.swift */,
+				76181DC82D6D378D00D4D7CB /* DeleteButton.swift */,
+				76181DCA2D6D37A100D4D7CB /* NewTodoField.swift */,
+				76181DCC2D6D37B300D4D7CB /* MenuView.swift */,
+				76181DCE2D6D3AED00D4D7CB /* ReorderButton.swift */,
+				76181DD02D6D443200D4D7CB /* AppPromotionView.swift */,
+				76181DD22D6D447100D4D7CB /* AppView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
 		76B1F8CD28B70DE80027F7C8 = {
 			isa = PBXGroup;
 			children = (
@@ -64,14 +103,13 @@
 		76B1F8D828B70DE80027F7C8 /* ToDoBar */ = {
 			isa = PBXGroup;
 			children = (
+				76181DC12D6D371300D4D7CB /* view */,
 				76B1F8D928B70DE80027F7C8 /* AppDelegate.swift */,
 				76B1F8DD28B70DE90027F7C8 /* Assets.xcassets */,
 				76B1F8DF28B70DE90027F7C8 /* Main.storyboard */,
 				76B1F8E228B70DE90027F7C8 /* ToDoBar.entitlements */,
 				76B1F8E828B70E650027F7C8 /* ToDo.swift */,
 				76B1F8EA28B70E850027F7C8 /* Extensions.swift */,
-				76B1F8EC28B70EA10027F7C8 /* ContentView.swift */,
-				76BD41E22A58602400859EA7 /* AboutView.swift */,
 			);
 			path = ToDoBar;
 			sourceTree = "<group>";
@@ -109,7 +147,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1310;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					76B1F8D528B70DE80027F7C8 = {
 						CreatedOnToolsVersion = 13.1;
@@ -156,8 +194,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76181DC52D6D375900D4D7CB /* EditableTodoItem.swift in Sources */,
+				76181DCD2D6D37B300D4D7CB /* MenuView.swift in Sources */,
+				76181DC32D6D374400D4D7CB /* TodoItemButton.swift in Sources */,
 				76B1F8E928B70E650027F7C8 /* ToDo.swift in Sources */,
+				76181DC02D6D370D00D4D7CB /* TodoList.swift in Sources */,
+				76181DCF2D6D3AED00D4D7CB /* ReorderButton.swift in Sources */,
+				76181DD12D6D443200D4D7CB /* AppPromotionView.swift in Sources */,
+				76181DCB2D6D37A100D4D7CB /* NewTodoField.swift in Sources */,
+				76181DD32D6D447100D4D7CB /* AppView.swift in Sources */,
+				76181DC92D6D378D00D4D7CB /* DeleteButton.swift in Sources */,
 				76B1F8ED28B70EA10027F7C8 /* ContentView.swift in Sources */,
+				76181DC72D6D377300D4D7CB /* TodoItemView.swift in Sources */,
 				76B1F8DA28B70DE80027F7C8 /* AppDelegate.swift in Sources */,
 				76B1F8EB28B70E850027F7C8 /* Extensions.swift in Sources */,
 				76BD41E32A58602400859EA7 /* AboutView.swift in Sources */,
@@ -182,6 +230,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -246,6 +295,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -309,7 +359,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = UV3HUS49VJ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -322,7 +372,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pavelmakhov.ToDoBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -340,7 +390,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = UV3HUS49VJ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -353,7 +403,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pavelmakhov.ToDoBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
