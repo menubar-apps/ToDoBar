@@ -56,7 +56,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             aboutWindow.close()
         }
         aboutWindow = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 240, height: 340),
+            contentRect: NSRect(x: 0, y: 0, width: 240, height: 500),
             styleMask: [.closable, .titled],
             backing: .buffered,
             defer: false
