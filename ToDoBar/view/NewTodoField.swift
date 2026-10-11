@@ -18,17 +18,22 @@ struct NewTodoField: View {
                 .padding(.vertical, 8)
                 .padding(.horizontal, 8)
                 .padding(.leading, 22)
-                .cornerRadius(8)
                 .textFieldStyle(PlainTextFieldStyle())
                 .focused($isTextFieldFocused)
-                .focusable(true) { isFocused in
-                    self.isTextFieldFocused = isFocused
-                }
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color(NSColor.textBackgroundColor))
+                )
                 .overlay(
-                    Image(systemName: "plus.circle.fill")
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color(NSColor.separatorColor), lineWidth: 1)
+                )
+                .overlay(
+                    Image(systemName: "plus")
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundColor(.gray)
+                        .foregroundColor(.secondary)
                         .padding(.leading, 8)
+                        .accessibilityHidden(true)
                 )
                 .onSubmit(onAddTodo)
                 .onAppear {

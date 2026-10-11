@@ -12,15 +12,15 @@ struct TodoItemView: View {
     let isDone: Bool
     
     var onTap: () -> Void
-    var onHover: (Bool) -> Void
-    
+
     var body: some View {
         Text(text)
             .foregroundColor(isDone ? .secondary : .primary)
             .padding(2)
             .strikethrough(isDone)
             .onTapGesture(perform: onTap)
-            .onHover(perform: onHover)
+            .accessibilityAddTraits(.isButton)
+            .accessibilityHint(Text("Edit task"))
     }
 }
 

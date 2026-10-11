@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct DeleteButton: View {
-    let isHovered: Bool
     var onClick: () -> Void
-    var onHover: (Bool) -> Void
-    
+    @State private var isHovered = false
+
     var body: some View {
         Button(action: {
             onClick()
         }) {
             Image(systemName: "trash.circle")
                 .resizable()
-                .frame(width: 18, height: 18)
-                .padding(.top, 1)
+                .frame(width: 20, height: 20)
                 .foregroundColor(isHovered ? .primary : .secondary)
-                .opacity(isHovered ? 1 : 0.2)
+                .opacity(isHovered ? 1 : 0.6)
+                .contentShape(Rectangle())
         }
         .buttonStyle(PlainButtonStyle())
-        .onHover(perform: onHover)
+        .onHover { isHovered = $0 }
+        .accessibilityLabel(Text("Delete task"))
     }
 }
 

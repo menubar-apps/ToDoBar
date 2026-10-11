@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		439046DF76FB9D2DB81C3A5E /* TodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DDA7116200A3F30ABAA4BA /* TodoTests.swift */; };
+		541B2A2C20F5B573A561EF51 /* ShortcutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9887966C882CB33EEE854C05 /* ShortcutView.swift */; };
 		76181DC02D6D370D00D4D7CB /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76181DBF2D6D370D00D4D7CB /* TodoList.swift */; };
 		76181DC32D6D374400D4D7CB /* TodoItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76181DC22D6D374400D4D7CB /* TodoItemButton.swift */; };
 		76181DC52D6D375900D4D7CB /* EditableTodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76181DC42D6D375900D4D7CB /* EditableTodoItem.swift */; };
@@ -24,10 +26,22 @@
 		76B1F8EB28B70E850027F7C8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B1F8EA28B70E850027F7C8 /* Extensions.swift */; };
 		76B1F8ED28B70EA10027F7C8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B1F8EC28B70EA10027F7C8 /* ContentView.swift */; };
 		76B1F8F028B70EDC0027F7C8 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 76B1F8EF28B70EDC0027F7C8 /* Defaults */; };
-		76B1F8F328B70EE90027F7C8 /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 76B1F8F228B70EE90027F7C8 /* HotKey */; };
 		76BD41E32A58602400859EA7 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BD41E22A58602400859EA7 /* AboutView.swift */; };
 		76F83BFC2B070112002B7EFC /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 76F83BFB2B070112002B7EFC /* LaunchAtLogin */; };
+		AE41B0F19BBB5F12B68790B4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EDCFACCB125B7B05B77AAF1 /* Cocoa.framework */; };
+		B830A03681B27DBFCE7F04DD /* KeyboardShortcuts in Frameworks */ = {isa = PBXBuildFile; productRef = AB9C45A606E3A2C95D2FE905 /* KeyboardShortcuts */; };
+		FBA542B647CFCAB7528DC552 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CC069F10433EB1C2A2A49195 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3DB4DC7390544BBE51965EB2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 76B1F8CE28B70DE80027F7C8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 76B1F8D528B70DE80027F7C8;
+			remoteInfo = ToDoBar;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		76181DBF2D6D370D00D4D7CB /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
@@ -49,22 +63,51 @@
 		76B1F8EA28B70E850027F7C8 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		76B1F8EC28B70EA10027F7C8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		76BD41E22A58602400859EA7 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		7EDCFACCB125B7B05B77AAF1 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		89DDA7116200A3F30ABAA4BA /* TodoTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TodoTests.swift; sourceTree = "<group>"; };
+		9887966C882CB33EEE854C05 /* ShortcutView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShortcutView.swift; sourceTree = "<group>"; };
+		CC069F10433EB1C2A2A49195 /* Localizable.xcstrings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		D6C30A6C98841107C42E2D1B /* ToDoBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2DE3A3B6FE987C2529D6B47B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE41B0F19BBB5F12B68790B4 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		76B1F8D328B70DE80027F7C8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				76F83BFC2B070112002B7EFC /* LaunchAtLogin in Frameworks */,
-				76B1F8F328B70EE90027F7C8 /* HotKey in Frameworks */,
 				76B1F8F028B70EDC0027F7C8 /* Defaults in Frameworks */,
+				B830A03681B27DBFCE7F04DD /* KeyboardShortcuts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0050E66A9378B0E81209F0C1 /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				7EDCFACCB125B7B05B77AAF1 /* Cocoa.framework */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
+		080887A365E3013433F97786 /* ToDoBarTests */ = {
+			isa = PBXGroup;
+			children = (
+				89DDA7116200A3F30ABAA4BA /* TodoTests.swift */,
+			);
+			path = ToDoBarTests;
+			sourceTree = "<group>";
+		};
 		76181DC12D6D371300D4D7CB /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +123,7 @@
 				76181DCE2D6D3AED00D4D7CB /* ReorderButton.swift */,
 				76181DD02D6D443200D4D7CB /* AppPromotionView.swift */,
 				76181DD22D6D447100D4D7CB /* AppView.swift */,
+				9887966C882CB33EEE854C05 /* ShortcutView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -89,6 +133,8 @@
 			children = (
 				76B1F8D828B70DE80027F7C8 /* ToDoBar */,
 				76B1F8D728B70DE80027F7C8 /* Products */,
+				B1634EAB092E1956F66C0798 /* Frameworks */,
+				080887A365E3013433F97786 /* ToDoBarTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -96,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				76B1F8D628B70DE80027F7C8 /* ToDoBar.app */,
+				D6C30A6C98841107C42E2D1B /* ToDoBarTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -110,8 +157,17 @@
 				76B1F8E228B70DE90027F7C8 /* ToDoBar.entitlements */,
 				76B1F8E828B70E650027F7C8 /* ToDo.swift */,
 				76B1F8EA28B70E850027F7C8 /* Extensions.swift */,
+				CC069F10433EB1C2A2A49195 /* Localizable.xcstrings */,
 			);
 			path = ToDoBar;
+			sourceTree = "<group>";
+		};
+		B1634EAB092E1956F66C0798 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0050E66A9378B0E81209F0C1 /* OS X */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,12 +188,30 @@
 			name = ToDoBar;
 			packageProductDependencies = (
 				76B1F8EF28B70EDC0027F7C8 /* Defaults */,
-				76B1F8F228B70EE90027F7C8 /* HotKey */,
 				76F83BFB2B070112002B7EFC /* LaunchAtLogin */,
+				AB9C45A606E3A2C95D2FE905 /* KeyboardShortcuts */,
 			);
 			productName = ToDoBar;
 			productReference = 76B1F8D628B70DE80027F7C8 /* ToDoBar.app */;
 			productType = "com.apple.product-type.application";
+		};
+		DDF55E02EB644ED7003F7EF0 /* ToDoBarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6C9A1131DE40F66F6C31C19 /* Build configuration list for PBXNativeTarget "ToDoBarTests" */;
+			buildPhases = (
+				DDCC8884F0FF693A7B14F9FF /* Sources */,
+				2DE3A3B6FE987C2529D6B47B /* Frameworks */,
+				D9CE19D2FC94DA004F4F1BC0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				32A089A95D7BE03D30F189C6 /* PBXTargetDependency */,
+			);
+			name = ToDoBarTests;
+			productName = ToDoBarTests;
+			productReference = D6C30A6C98841107C42E2D1B /* ToDoBarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -161,18 +235,25 @@
 			knownRegions = (
 				en,
 				Base,
+				de,
+				fr,
+				es,
+				"zh-Hans",
+				ko,
+				ja,
 			);
 			mainGroup = 76B1F8CD28B70DE80027F7C8;
 			packageReferences = (
 				76B1F8EE28B70EDC0027F7C8 /* XCRemoteSwiftPackageReference "Defaults" */,
-				76B1F8F128B70EE90027F7C8 /* XCRemoteSwiftPackageReference "HotKey" */,
 				76F83BFA2B070112002B7EFC /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */,
+				763751B68A7E5FAB5F137F10 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */,
 			);
 			productRefGroup = 76B1F8D728B70DE80027F7C8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				76B1F8D528B70DE80027F7C8 /* ToDoBar */,
+				DDF55E02EB644ED7003F7EF0 /* ToDoBarTests */,
 			);
 		};
 /* End PBXProject section */
@@ -184,6 +265,14 @@
 			files = (
 				76B1F8DE28B70DE90027F7C8 /* Assets.xcassets in Resources */,
 				76B1F8E128B70DE90027F7C8 /* Main.storyboard in Resources */,
+				FBA542B647CFCAB7528DC552 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D9CE19D2FC94DA004F4F1BC0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,10 +298,28 @@
 				76B1F8DA28B70DE80027F7C8 /* AppDelegate.swift in Sources */,
 				76B1F8EB28B70E850027F7C8 /* Extensions.swift in Sources */,
 				76BD41E32A58602400859EA7 /* AboutView.swift in Sources */,
+				541B2A2C20F5B573A561EF51 /* ShortcutView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DDCC8884F0FF693A7B14F9FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				439046DF76FB9D2DB81C3A5E /* TodoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		32A089A95D7BE03D30F189C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ToDoBar;
+			target = 76B1F8D528B70DE80027F7C8 /* ToDoBar */;
+			targetProxy = 3DB4DC7390544BBE51965EB2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		76B1F8DF28B70DE90027F7C8 /* Main.storyboard */ = {
@@ -226,6 +333,22 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		1E74FBE69C63532883612CF6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UV3HUS49VJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pavelmakhov.ToDoBarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ToDoBar.app/Contents/MacOS/ToDoBar";
+			};
+			name = Release;
+		};
 		76B1F8E328B70DE90027F7C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -281,7 +404,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -340,7 +463,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -359,7 +482,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = UV3HUS49VJ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -372,10 +495,11 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pavelmakhov.ToDoBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) $(DISTRIBUTION_FLAG)";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -390,7 +514,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = UV3HUS49VJ;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -403,13 +527,30 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pavelmakhov.ToDoBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) $(DISTRIBUTION_FLAG)";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
+		};
+		F72556A403C29EDBBC7B7D97 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = UV3HUS49VJ;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pavelmakhov.ToDoBarTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ToDoBar.app/Contents/MacOS/ToDoBar";
+			};
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
@@ -432,31 +573,40 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		A6C9A1131DE40F66F6C31C19 /* Build configuration list for PBXNativeTarget "ToDoBarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E74FBE69C63532883612CF6 /* Release */,
+				F72556A403C29EDBBC7B7D97 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		763751B68A7E5FAB5F137F10 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/KeyboardShortcuts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.0;
+			};
+		};
 		76B1F8EE28B70EDC0027F7C8 /* XCRemoteSwiftPackageReference "Defaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Defaults";
 			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-		76B1F8F128B70EE90027F7C8 /* XCRemoteSwiftPackageReference "HotKey" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/soffes/HotKey";
-			requirement = {
-				branch = master;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.9;
 			};
 		};
 		76F83BFA2B070112002B7EFC /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin-Modern";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -467,15 +617,15 @@
 			package = 76B1F8EE28B70EDC0027F7C8 /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
 		};
-		76B1F8F228B70EE90027F7C8 /* HotKey */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 76B1F8F128B70EE90027F7C8 /* XCRemoteSwiftPackageReference "HotKey" */;
-			productName = HotKey;
-		};
 		76F83BFB2B070112002B7EFC /* LaunchAtLogin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 76F83BFA2B070112002B7EFC /* XCRemoteSwiftPackageReference "LaunchAtLogin-Modern" */;
 			productName = LaunchAtLogin;
+		};
+		AB9C45A606E3A2C95D2FE905 /* KeyboardShortcuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 763751B68A7E5FAB5F137F10 /* XCRemoteSwiftPackageReference "KeyboardShortcuts" */;
+			productName = KeyboardShortcuts;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

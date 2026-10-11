@@ -11,11 +11,9 @@ struct ReorderButton: View {
     
     var body: some View {
         Image(systemName: "line.horizontal.3")
-//            .resizable()
-//            .frame(width: 18, height: 18)
-//            .padding(.top, 1)
             .foregroundColor(.secondary)
-            .opacity(0.2)
+            .opacity(0.6)
+            .accessibilityHidden(true)
     }
 }
 //

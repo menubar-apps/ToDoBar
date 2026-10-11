@@ -7,17 +7,18 @@
 
 import Cocoa
 import SwiftUI
-import HotKey
+import KeyboardShortcuts
 import Defaults
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
-    
+
     var popover: NSPopover!
     var statusBarItem: NSStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-    let hotKey = HotKey(key: .x, modifiers: [.control, .shift])  // Global hotke
-    var aboutWindow: NSWindow!
-    
+    var aboutWindow: NSWindow?
+    var shortcutWindow: NSWindow?
+    private var observation: Defaults.Observation?
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let contentView = ContentView()
         
@@ -28,69 +29,85 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.popover = popover
         
         guard let statusButton = statusBarItem.button else { return }
-        statusButton.image = NSImage(systemSymbolName: "checklist", accessibilityDescription: nil)
+        statusButton.image = NSImage(systemSymbolName: "checklist", accessibilityDescription: "ToDoBar")
         statusButton.imagePosition = .imageLeft
         statusButton.action = #selector(togglePopover(_:))
-        
-        hotKey.keyUpHandler = { self.togglePopover(nil) }
-        
+
+        KeyboardShortcuts.onKeyUp(for: .toggleTodoList) { [weak self] in
+            self?.togglePopover(nil)
+        }
+
+        // Keep the menu bar count in sync with the saved list, whoever changes it.
+        observation = Defaults.observe(keys: .todos, .showTaskCount) { [weak self] in
+            self?.updateStatusBarButton()
+        }
         updateStatusBarButton()
-        
+
         NSApp.setActivationPolicy(.accessory)
     }
-    
+
     @objc func togglePopover(_ sender: AnyObject?) {
         if let button = self.statusBarItem.button {
             if self.popover.isShown {
                 self.popover.performClose(sender)
             } else {
                 self.popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+                // Needed when opened with the keyboard shortcut, so the text field can take typing.
+                bringToFront()
+                popover.contentViewController?.view.window?.makeKey()
             }
         }
     }
-    
+
+    private func bringToFront() {
+        if #available(macOS 14.0, *) {
+            NSApp.activate()
+        } else {
+            NSApp.activate(ignoringOtherApps: true)
+        }
+    }
+
     @objc
     func openAboutWindow(_: NSStatusBarButton?) {
-        NSLog("Open about window")
-        let contentView = AboutView()
-        if aboutWindow != nil {
-            aboutWindow.close()
-        }
-        aboutWindow = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 240, height: 500),
+        aboutWindow?.close()
+        aboutWindow = makeWindow(title: String(localized: "About"), content: AboutView())
+    }
+
+    func openShortcutWindow() {
+        shortcutWindow?.close()
+        shortcutWindow = makeWindow(title: String(localized: "Keyboard Shortcut"), content: ShortcutView())
+    }
+
+    private func makeWindow<Content: View>(title: String, content: Content) -> NSWindow {
+        let window = NSWindow(
+            contentRect: NSRect(x: 0, y: 0, width: 240, height: 100),
             styleMask: [.closable, .titled],
             backing: .buffered,
             defer: false
         )
-        
-        aboutWindow.title = "About"
-        aboutWindow.contentView = NSHostingView(rootView: contentView)
-        aboutWindow.makeKeyAndOrderFront(nil)
-        aboutWindow.styleMask.remove(.resizable)
-        
-        // allow the preference window can be focused automatically when opened
-        NSApplication.shared.activate(ignoringOtherApps: true)
-        
-        let controller = NSWindowController(window: aboutWindow)
-        controller.showWindow(self)
-        
-        aboutWindow.center()
-        aboutWindow.orderFrontRegardless()
+        window.title = title
+        let hostingView = NSHostingView(rootView: content)
+        window.contentView = hostingView
+        window.setContentSize(hostingView.fittingSize)
+        window.isReleasedWhenClosed = false
+        bringToFront()
+        window.center()
+        window.makeKeyAndOrderFront(nil)
+        window.orderFrontRegardless()
+        return window
     }
-    
+
     @objc
     func quit() {
-        NSLog("User click Quit")
         NSApplication.shared.terminate(self)
     }
 }
 
 extension AppDelegate {
-    @objc
     func updateStatusBarButton() {
-        if Defaults[.showTaskCount] {
-            let unfinishedCount = Defaults[.todos].filter { !$0.isDone }.count
-            self.statusBarItem.button?.title = String(unfinishedCount)
+        let unfinishedCount = Defaults[.todos].unfinishedCount
+        if Defaults[.showTaskCount] && unfinishedCount > 0 {
+            statusBarItem.button?.title = String(unfinishedCount)
         } else {
             statusBarItem.button?.title = ""
         }

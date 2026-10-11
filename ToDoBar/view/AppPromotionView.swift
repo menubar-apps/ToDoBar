@@ -8,23 +8,19 @@
 import SwiftUI
 
 struct AppPromotionView: View {
-    let apps: [App] = [
-        App(name: "GojiBar",
-            description: "Description for App One",
-            iconName: "gojibar",
-            appStoreURL: "https://apps.apple.com/app/id6471348025"),
-        App(name: "OctoSpace",
-            description: "Description for App Two",
-            iconName: "octospace",
-            appStoreURL: "https://apps.apple.com/app/id6473707939"),
-        App(name: "PullBar Pro",
-            description: "Description for App Three",
-            iconName: "pullbarpro",
-            appStoreURL: "https://apps.apple.com/app/id6462591649"),
-        App(name: "StreakBar",
-            description: "Description for App Four",
-            iconName: "streakbar",
-            appStoreURL: "https://apps.apple.com/app/id6464448808"),
+    let apps: [PromoApp] = [
+        PromoApp(name: "GojiBar",
+                 iconName: "gojibar",
+                 appStoreURL: URL("https://apps.apple.com/app/id6471348025")),
+        PromoApp(name: "OctoSpace",
+                 iconName: "octospace",
+                 appStoreURL: URL("https://apps.apple.com/app/id6473707939")),
+        PromoApp(name: "PullBar Pro",
+                 iconName: "pullbarpro",
+                 appStoreURL: URL("https://apps.apple.com/app/id6462591649")),
+        PromoApp(name: "StreakBar",
+                 iconName: "streakbar",
+                 appStoreURL: URL("https://apps.apple.com/app/id6464448808")),
     ]
     
     var body: some View {
