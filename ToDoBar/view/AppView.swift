@@ -10,7 +10,7 @@ import SwiftUI
 struct AppView: View {
     @Environment(\.openURL) var openURL
 
-    let app: App
+    let app: PromoApp
     @State private var isHovered = false
 
     var body: some View {
@@ -32,8 +32,9 @@ struct AppView: View {
             }
         }
         .onTapGesture {
-            openURL(URL(string: app.appStoreURL)!)
+            openURL(app.appStoreURL)
         }
+        .accessibilityAddTraits(.isButton)
     }
 }
 

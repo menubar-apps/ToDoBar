@@ -22,11 +22,11 @@ struct EditableTodoItem: View {
             .onExitCommand(perform: onExit)
             .onChange(of: isTodoItemFocused, perform: onFocusChange)
             .padding(2)
-            .cornerRadius(8)
             .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color(NSColor.controlColor), lineWidth: 1)
+                RoundedRectangle(cornerRadius: 6)
+                    .stroke(Color.accentColor, lineWidth: 1)
             )
+            .accessibilityLabel(Text("Edit task"))
     }
 }
 

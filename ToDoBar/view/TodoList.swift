@@ -9,97 +9,91 @@ import SwiftUI
 
 struct TodoList: View {
     @Binding var todos: [Todo]
-    @Binding var editedItemIdx: Int
-    @Binding var hoverIdx: Int
-    @Binding var hoverItemIdx: Int
-    
+    @Binding var editedItemID: Todo.ID?
+
     @FocusState.Binding var isTodoItemFocused: Bool
     @Binding var editedItem: String
-    
+    /// Called with `true` when a task is marked done and `false` when it is unmarked.
+    var onCompletionChanged: (Bool) -> Void
+
     var body: some View {
         List {
-            ForEach($todos.indices, id: \.self) { index in
+            ForEach($todos) { $todo in
+                let id = todo.id
                 HStack {
                     ReorderButton()
 
-                    TodoItemButton(isDone: $todos[index].isDone, onToggle: {
-                        (NSApplication.shared.delegate as? AppDelegate)?.updateStatusBarButton()
-                    })
-                    
-                    if editedItemIdx == index {
+                    TodoItemButton(isDone: $todo.isDone, onToggle: onCompletionChanged)
+
+                    if editedItemID == id {
                         EditableTodoItem(
                             editedItem: $editedItem,
                             isTodoItemFocused: $isTodoItemFocused,
                             onSubmit: {
-                                editedItemIdx = -1
-                                todos[index] = Todo(text: editedItem, isDone: todos[index].isDone)
+                                commitEdit(id)
                                 isTodoItemFocused = false
                             },
                             onExit: {
-                                editedItemIdx = -1
-                                todos[index] = Todo(text: editedItem, isDone: todos[index].isDone)
+                                // Esc discards the edit.
+                                editedItemID = nil
                                 isTodoItemFocused = false
                             },
                             onFocusChange: { isFocused in
                                 if !isFocused {
-                                    editedItemIdx = -1
-                                    todos[index] = Todo(text: editedItem, isDone: todos[index].isDone)
+                                    commitEdit(id)
                                 }
                             }
                         )
                     } else {
                         TodoItemView(
-                            text: todos[index].text,
-                            isDone: todos[index].isDone,
+                            text: todo.text,
+                            isDone: todo.isDone,
                             onTap: {
-                                editedItemIdx = index
-                                editedItem = todos[index].text
+                                if let current = editedItemID { commitEdit(current) }
+                                editedItemID = id
+                                editedItem = todo.text
                                 isTodoItemFocused = true
-                            },
-                            onHover: { isHovered in
-                                if isHovered {
-                                    self.hoverIdx = index
-                                } else {
-                                    self.hoverIdx = -1
-                                }
-                                DispatchQueue.main.async {
-                                    if self.hoverIdx == index {
-                                        NSCursor.iBeam.push()
-                                    } else {
-                                        NSCursor.pop()
-                                    }
-                                }
                             }
                         )
                         .transition(.opacity)
                     }
-                    
+
                     Spacer()
-                                        
-                    DeleteButton(
-                        isHovered: hoverItemIdx == index,
-                        onClick: {
-                            todos.remove(at: index)
-                            (NSApplication.shared.delegate as? AppDelegate)?.updateStatusBarButton()
-                        },
-                        onHover: { isHovered in
-                            if isHovered {
-                                withAnimation {
-                                    self.hoverItemIdx = index
-                                }
-                            } else {
-                                self.hoverItemIdx = -1
-                            }
-                        }
-                    )
-                    .listRowSeparator(.hidden)
+
+                    DeleteButton(onClick: {
+                        todos.removeAll { $0.id == id }
+                    })
                 }
                 .listRowSeparator(.hidden)
+                .accessibilityAction(named: Text("Move up")) { moveTask(id, by: -1) }
+                .accessibilityAction(named: Text("Move down")) { moveTask(id, by: 1) }
             }
             .onMove(perform: move)
         }
+        .overlay {
+            if todos.isEmpty {
+                Text("No tasks")
+                    .foregroundColor(.secondary)
+            }
+        }
     }
-    
+
+    private func moveTask(_ id: Todo.ID, by offset: Int) {
+        guard let index = todos.firstIndex(where: { $0.id == id }) else { return }
+        let target = index + offset
+        guard todos.indices.contains(target) else { return }
+        // `toOffset` is the insertion point before removal, so moving down needs +1.
+        todos.move(fromOffsets: IndexSet(integer: index), toOffset: offset > 0 ? target + 1 : target)
+    }
+
+    /// Saves the edit only if this row is still the one being edited
+    /// (submit and focus loss can both fire for the same edit).
+    private func commitEdit(_ id: Todo.ID) {
+        guard editedItemID == id else { return }
+        editedItemID = nil
+        todos.commitEdit(id: id, text: editedItem)
+    }
+
     private func move(from source: IndexSet, to destination: Int) {
         withAnimation(.easeInOut(duration: 0.05)) {
             todos.move(fromOffsets: source, toOffset: destination)

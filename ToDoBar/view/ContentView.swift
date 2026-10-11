@@ -7,46 +7,39 @@
 
 import SwiftUI
 import Defaults
-import LaunchAtLogin
+import StoreKit
 
 struct ContentView: View {
-    
+
     @Default(.todos) var todos
-    
-    @NSApplicationDelegateAdaptor private var appDelegate: AppDelegate
-    
-    @State private var text: String = ""
+    @Environment(\.requestReview) private var requestReview
+
     @State private var editedItem: String = ""
-    
     @State private var newTodo: String = ""
-    
-    @State private var editedItemIdx: Int = -1
-    @State private var hoverItemIdx: Int = -1
-    @State private var hoverIdx: Int = -1
-    
+    @State private var editedItemID: Todo.ID?
+
     @FocusState private var isTextFieldFocused: Bool
     @FocusState private var isTodoItemFocused: Bool
-    
+
     var body: some View {
         VStack {
             TodoList(
                 todos: $todos,
-                editedItemIdx: $editedItemIdx,
-                hoverIdx: $hoverIdx,
-                hoverItemIdx: $hoverItemIdx,
+                editedItemID: $editedItemID,
                 isTodoItemFocused: $isTodoItemFocused,
-                editedItem: $editedItem
+                editedItem: $editedItem,
+                onCompletionChanged: completionChanged
             )
             .scrollContentBackground(.hidden)
-            
+
             HStack {
                 NewTodoField(
                     newTodo: $newTodo,
                     isTextFieldFocused: $isTextFieldFocused,
                     onAddTodo: {
-                        self.todos.append(Todo(text: newTodo))
-                        newTodo = ""
-                        (NSApplication.shared.delegate as? AppDelegate)?.updateStatusBarButton()
+                        if todos.add(text: newTodo) {
+                            newTodo = ""
+                        }
                     }
                 )
                 
@@ -55,6 +48,23 @@ struct ContentView: View {
                 MenuView(todos: $todos)
             }
             .padding(8)
+        }
+        // Focus the new-task field every time the popover opens, not only the first time.
+        .onReceive(NotificationCenter.default.publisher(for: NSPopover.willShowNotification)) { _ in
+            editedItemID = nil
+            isTextFieldFocused = true
+        }
+    }
+
+    private func completionChanged(isDone: Bool) {
+        if isDone {
+            Defaults[.completedCount] += 1
+            if ReviewPrompt.shouldRequest(completedCount: Defaults[.completedCount]) {
+                requestReview()
+            }
+        } else {
+            // Unmarking undoes the count so ticking and unticking can't trigger the prompt.
+            Defaults[.completedCount] = max(0, Defaults[.completedCount] - 1)
         }
     }
 }
